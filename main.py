@@ -1,8 +1,17 @@
 import random
 
 
+# Run the game
 def main():
-    pass
+    move_choices = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"]
+    while True:
+        player_move = input("Your move: ").strip().upper()
+        computer_move = random.choice(move_choices)
+        if player_move in move_choices:
+            print("Valid move")
+        else:
+            print("Invalid move")
+            continue
 
 
 # Ask player if they want to play the game
