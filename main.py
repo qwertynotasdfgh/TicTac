@@ -5,15 +5,15 @@ import os
 # Run the game
 def main():
     move_choices = {
-        "T1": "T1",
-        "T2": "T2",
-        "T3": "T3",
-        "M1": "M1",
-        "M2": "M2",
-        "M3": "M3",
-        "B1": "B1",
-        "B2": "B2",
-        "B3": "B3",
+        "T1": "_",
+        "T2": "_",
+        "T3": "_",
+        "M1": "_",
+        "M2": "_",
+        "M3": "_",
+        "B1": "_",
+        "B2": "_",
+        "B3": "_",
     }
 
     # Print the board
@@ -29,15 +29,24 @@ def main():
         """
         )
 
-    # Ask the player for their move
-    while True:
-        player_move = input("Your move: ").strip().upper()
-        computer_move = random.choice(move_choices)
-        if player_move in move_choices:
-            print("Valid move")
-        else:
-            print("Invalid move")
-            continue
+    # Ask the player for their move and check if it is valid
+    def player_move():
+        while True:
+            print_board()
+            player_move = input("Your move: ").strip().lower()
+
+            if player_move in move_choices and move_choices[player_move] == "_":
+                return player_move
+            else:
+                print("Invalid move")
+
+    # Get the computer's move
+    def computer_move():
+        while True:
+            computer_move = random.choice(list(move_choices.keys()))
+
+            if move_choices[computer_move] == "_":
+                return computer_move
 
 
 # Ask player if they want to play the game
