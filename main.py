@@ -35,6 +35,8 @@ def main():
         ["T3", "M2", "B1"],
     ]
 
+    # Check for a win condition
+
     # Print the board
     def print_board():
         os.system("cls" if os.name == "nt" else "clear")
