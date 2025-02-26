@@ -4,6 +4,15 @@ import random
 # Run the game
 def main():
     move_choices = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"]
+
+    # Print the board
+    print("T1 | T2 | T3")
+    print("-----------")
+    print("M1 | M2 | M3")
+    print("-----------")
+    print("B1 | B2 | B3")
+
+    # Ask the player for their move
     while True:
         player_move = input("Your move: ").strip().upper()
         computer_move = random.choice(move_choices)
