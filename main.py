@@ -76,6 +76,10 @@ response = input("Y/N: ")
 
 # If the player says yes run the game, end the program if they say no
 if response.lower() == "y":
+    print("You play by entering the location of your move")
+    print("Type 'T' for top, 'M' for middle, 'B' for bottom")
+    print("Type '1' for the left, '2' for the middle, '3' for the right")
+    print("For example, 'T1' would be the top left")
     main()
 else:
     print("Ending Program...")
