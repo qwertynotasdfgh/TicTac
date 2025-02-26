@@ -19,10 +19,8 @@ def main():
     }
     # Game ending conditoins
     # Full board condition
+    global spaces_available
     spaces_available = 9
-    if spaces_available == 0:
-        print("Game Over")
-        return
     # Winning condition
     winning_conditions = [
         ["T1", "T2", "T3"],
@@ -65,8 +63,7 @@ def main():
     def player_move():
         global spaces_available
         while True:
-            print_board()
-            player_move = input("Your move: ").strip().lower()
+            player_move = input("Your move: ").strip().upper()
 
             if player_move in move_choices and move_choices[player_move] == "_":
                 move_choices[player_move] = player
@@ -87,6 +84,21 @@ def main():
             check_win(computer)
             spaces_available -= 1
             return computer_move
+
+    # Game loop
+    while True:
+        print_board()
+        player_move()
+        print_board()
+        if check_win(player):
+            break
+        if spaces_available == 0:
+            print("Game Over, it's a tie!")
+            break
+        computer_move()
+        print_board()
+        if check_win(computer):
+            break
 
 
 # Ask player if they want to play the game
