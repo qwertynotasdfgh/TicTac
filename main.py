@@ -5,7 +5,7 @@ import os
 # Run the game
 def main():
 
-    # Set up the game board
+    # Set up the possible moves
     move_choices = {
         "T1": "_",
         "T2": "_",
@@ -18,12 +18,12 @@ def main():
         "B3": "_",
     }
     # Game ending conditoins
-    # Full boad condition
+    # Full board condition
     spaces_available = 9
     if spaces_available == 0:
         print("Game Over")
         return
-    # Winning conditions
+    # Winning condition
     winning_conditions = [
         ["T1", "T2", "T3"],
         ["M1", "M2", "M3"],
@@ -35,7 +35,18 @@ def main():
         ["T3", "M2", "B1"],
     ]
 
+    # Set up players
+    player = "X"
+    computer = "O"
+
     # Check for a win condition
+    def check_win(player):
+        for condition in winning_conditions:
+            if all(move_choices[move] == player for move in condition):
+                print_board()
+                print(f"{player} wins!")
+                return True
+        return False
 
     # Print the board
     def print_board():
@@ -52,11 +63,14 @@ def main():
 
     # Ask the player for their move and check if it is valid
     def player_move():
+        global spaces_available
         while True:
             print_board()
             player_move = input("Your move: ").strip().lower()
 
             if player_move in move_choices and move_choices[player_move] == "_":
+                move_choices[player_move] = player
+                check_win(player)
                 spaces_available -= 1
                 return player_move
             else:
@@ -64,12 +78,15 @@ def main():
 
     # Get the computer's move
     def computer_move():
-        while True:
-            computer_move = random.choice(list(move_choices.keys()))
+        global spaces_available
+        available_moves = [pos for pos, val in move_choices.items() if val == "_"]
 
-            if move_choices[computer_move] == "_":
-                spaces_available -= 1
-                return computer_move
+        if available_moves:
+            computer_move = random.choice(available_moves)
+            move_choices[computer_move] = computer
+            check_win(computer)
+            spaces_available -= 1
+            return computer_move
 
 
 # Ask player if they want to play the game
