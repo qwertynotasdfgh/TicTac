@@ -1,16 +1,33 @@
 import random
+import os
 
 
 # Run the game
 def main():
-    move_choices = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"]
+    move_choices = {
+        "T1": "T1",
+        "T2": "T2",
+        "T3": "T3",
+        "M1": "M1",
+        "M2": "M2",
+        "M3": "M3",
+        "B1": "B1",
+        "B2": "B2",
+        "B3": "B3",
+    }
 
     # Print the board
-    print("T1 | T2 | T3")
-    print("-----------")
-    print("M1 | M2 | M3")
-    print("-----------")
-    print("B1 | B2 | B3")
+    def print_board():
+        os.system("cls" if os.name == "nt" else "clear")
+        print(
+            f"""
+        {move_choices["T1"]} | {move_choices["T2"]} | {move_choices["T3"]}
+        ---------
+        {move_choices["M1"]} | {move_choices["M2"]} | {move_choices["M3"]}
+        ---------
+        {move_choices["B1"]} | {move_choices["B2"]} | {move_choices["B3"]}
+        """
+        )
 
     # Ask the player for their move
     while True:
